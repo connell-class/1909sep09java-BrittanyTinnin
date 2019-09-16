@@ -134,10 +134,57 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		HashMap<String, Integer> alphabet = new HashMap<>();
+		HashMap<Character, Integer> alphabet = new HashMap<>();
+		String newString = string.toUpperCase();
+		char[] letters = newString.toCharArray();
+		int score = 0;
+				
+		char[] valueOne = {'A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'};
+		char[] valueTwo = {'D', 'G'};
+		char[] valueThree = {'B', 'C', 'M', 'P'};
+		char[] valueFour = {'F', 'H', 'V', 'W', 'Y'};
+		char[] valueFive = {'K'};
+		char[] valueEight = {'J', 'X'};
+		char[] valueTen = {'Q', 'Z'};
+		
+		for (char key : valueOne) {
+			alphabet.put(key, 1);
+		}
+		
+		for (char key : valueTwo) {
+			alphabet.put(key, 2);
+		}
+		
+		for (char key : valueThree) {
+			alphabet.put(key, 3);
+		}
+		
+		for (char key : valueFour) {
+			alphabet.put(key, 4);
+		}
+		
+		for (char key : valueFive) {
+			alphabet.put(key, 5);
+		}
+		
+		for (char key : valueEight) {
+			alphabet.put(key, 8);
+		}
+		
+		for (char key : valueTen) {
+			alphabet.put(key, 10);
+		}
 		
 		System.out.println(alphabet);
-		return 0;
+		
+		for (char l : letters) {
+			
+			if(alphabet.containsKey(l)) {
+				score += alphabet.get(l);
+			}
+		}
+		
+		return score;
 	}
 
 	/**
