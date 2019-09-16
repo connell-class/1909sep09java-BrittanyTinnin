@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -133,6 +134,9 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
+		HashMap<String, Integer> alphabet = new HashMap<>();
+		
+		System.out.println(alphabet);
 		return 0;
 	}
 
