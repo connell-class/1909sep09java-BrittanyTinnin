@@ -31,7 +31,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
 		String[] phrasing = phrase.split("[-, ?.@]+");
         String term = "";
 
@@ -92,7 +91,6 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
 			if(getSideOne() == getSideTwo() && getSideOne() == getSideThree()) {
 				return true;
 			}
@@ -100,7 +98,6 @@ public class EvaluationService {
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
 			if(getSideOne() == getSideTwo() || getSideOne() == getSideThree()) {
 				return true;
 			}
@@ -108,7 +105,6 @@ public class EvaluationService {
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
 			if(getSideOne() != getSideTwo() && getSideOne() != getSideTwo()) {
 				return true;
 			}
@@ -133,7 +129,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
 		HashMap<Character, Integer> alphabet = new HashMap<>();
 		String newString = string.toUpperCase();
 		char[] letters = newString.toCharArray();
@@ -220,6 +215,13 @@ public class EvaluationService {
 	 */
 	public String cleanPhoneNumber(String string) {
 		// TODO Write an implementation for this method declaration
+//		String cleanNumber = string.replaceAll("[-, ?.@]+", "");
+//		System.out.println(cleanNumber);
+		
+		for(int i=0; i<string.length(); i++) {
+			System.out.println(string.charAt(i));
+		}
+		
 		return null;
 	}
 
