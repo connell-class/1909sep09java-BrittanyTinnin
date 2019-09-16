@@ -31,8 +31,15 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
-	}
+		String[] phrasing = phrase.split("[-, ?.@]+");
+        String term = "";
+
+        for(String item : phrasing) {
+            term += item.charAt(0);
+        }
+        
+        return term.toUpperCase();    
+    }
 
 	/**
 	 * 3. Determine if a triangle is equilateral, isosceles, or scalene. An
