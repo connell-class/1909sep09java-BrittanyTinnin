@@ -214,15 +214,25 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-//		String cleanNumber = string.replaceAll("[-, ?.@]+", "");
-//		System.out.println(cleanNumber);
+		
+		String newNum = "";
 		
 		for(int i=0; i<string.length(); i++) {
-			System.out.println(string.charAt(i));
+			if(Character.isDigit(string.charAt(i))){
+				newNum += string.charAt(i);
+				
+			};
+			
+			if(newNum.length() > 11) {
+				throw new IllegalArgumentException("Invalid Number");
+			}
+			
+			if(Character.isAlphabetic(string.charAt(i))) {
+				throw new IllegalArgumentException("Invalid Number");
+			}
 		}
 		
-		return null;
+		return newNum;
 	}
 
 	/**
