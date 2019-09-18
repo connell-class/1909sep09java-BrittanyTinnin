@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -245,8 +246,18 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String[] arrayString = string.split("[-, ?.@]+");
+		//change so spaces and commas are removed
+		HashMap<String, Integer> counter = new HashMap<>();
+		System.out.println(Arrays.toString(arrayString));
+		
+		for(String w:arrayString) {
+			int frequency = counter.getOrDefault(w,0);
+			
+			counter.put(w, ++frequency);
+		}
+		
+		return counter;
 	}
 
 	/**
@@ -345,6 +356,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
+		
 		// TODO Write an implementation for this method declaration
 		return false;
 	}
