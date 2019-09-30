@@ -465,25 +465,29 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		int n = 1;
-		int k;
+		// TODO Write an implementation for this method declaration		
+		int num = 1;
+		//declare j here to be able to access outside of for loop
+		int j;
 		int count = 0;
-		if (i <= 0) {
+		
+		if (i<= 0) {
 			throw new IllegalArgumentException();
 		}
 		while (count < i) {
-			n++;
-			for (k = 2; k <= n; k++) {
-				if (n % k == 0) {
+			num++;
+			for(j=2; j<=num; j++) {
+				if (num % j == 0) {
+//					return;
 					break;
 				}
 			}
-			if (k == n) {
+			
+			if (j == num) {
 				count++;
 			}
 		}
-		return n;
+		return num;
 	}
 
 	/**
@@ -578,10 +582,9 @@ public class EvaluationService {
 	public boolean isPangram(String string) {
 		// TODO Write an implementation for this method declaration
 		HashSet<Character> alphabet = new HashSet<Character>();
-		char[] myCharArray = string.toLowerCase().toCharArray();
-		char x;
+		char[] myCharArray = string.toCharArray();
 		for (int i = 0; i < string.length(); i++) {
-			x = myCharArray[i];
+			char x = myCharArray[i];
 			if (Character.isLetter(x)) {
 				alphabet.add(x);
 			}
