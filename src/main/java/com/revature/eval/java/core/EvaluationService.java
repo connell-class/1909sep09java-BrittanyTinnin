@@ -1,10 +1,15 @@
 package com.revature.eval.java.core;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class EvaluationService {
 
@@ -17,7 +22,7 @@ public class EvaluationService {
 	 */
 	public String reverse(String string) {
 		char[] reversed = new char[string.length()];
-		for (int i = reversed.length - 1, j=0; i >= 0; i--, j++) {
+		for (int i = reversed.length - 1, j = 0; i >= 0; i--, j++) {
 			reversed[j] = string.charAt(i);
 		}
 		return new String(reversed);
@@ -33,14 +38,14 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		String[] phrasing = phrase.split("[-, ?.@]+");
-        String term = "";
+		String term = "";
 
-        for(String item : phrasing) {
-            term += item.charAt(0);
-        }
-        
-        return term.toUpperCase();    
-    }
+		for (String item : phrasing) {
+			term += item.charAt(0);
+		}
+
+		return term.toUpperCase();
+	}
 
 	/**
 	 * 3. Determine if a triangle is equilateral, isosceles, or scalene. An
@@ -92,21 +97,21 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			if(getSideOne() == getSideTwo() && getSideOne() == getSideThree()) {
+			if (getSideOne() == getSideTwo() && getSideOne() == getSideThree()) {
 				return true;
 			}
 			return false;
 		}
 
 		public boolean isIsosceles() {
-			if(getSideOne() == getSideTwo() || getSideOne() == getSideThree()) {
+			if (getSideOne() == getSideTwo() || getSideOne() == getSideThree()) {
 				return true;
 			}
 			return false;
 		}
 
 		public boolean isScalene() {
-			if(getSideOne() != getSideTwo() && getSideOne() != getSideTwo()) {
+			if (getSideOne() != getSideTwo() && getSideOne() != getSideTwo()) {
 				return true;
 			}
 			return false;
@@ -134,52 +139,50 @@ public class EvaluationService {
 		String newString = string.toUpperCase();
 		char[] letters = newString.toCharArray();
 		int score = 0;
-				
-		char[] valueOne = {'A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'};
-		char[] valueTwo = {'D', 'G'};
-		char[] valueThree = {'B', 'C', 'M', 'P'};
-		char[] valueFour = {'F', 'H', 'V', 'W', 'Y'};
-		char[] valueFive = {'K'};
-		char[] valueEight = {'J', 'X'};
-		char[] valueTen = {'Q', 'Z'};
-		
+
+		char[] valueOne = { 'A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T' };
+		char[] valueTwo = { 'D', 'G' };
+		char[] valueThree = { 'B', 'C', 'M', 'P' };
+		char[] valueFour = { 'F', 'H', 'V', 'W', 'Y' };
+		char[] valueFive = { 'K' };
+		char[] valueEight = { 'J', 'X' };
+		char[] valueTen = { 'Q', 'Z' };
+
 		for (char key : valueOne) {
 			alphabet.put(key, 1);
 		}
-		
+
 		for (char key : valueTwo) {
 			alphabet.put(key, 2);
 		}
-		
+
 		for (char key : valueThree) {
 			alphabet.put(key, 3);
 		}
-		
+
 		for (char key : valueFour) {
 			alphabet.put(key, 4);
 		}
-		
+
 		for (char key : valueFive) {
 			alphabet.put(key, 5);
 		}
-		
+
 		for (char key : valueEight) {
 			alphabet.put(key, 8);
 		}
-		
+
 		for (char key : valueTen) {
 			alphabet.put(key, 10);
 		}
-		
-		System.out.println(alphabet);
-		
+
 		for (char l : letters) {
-			
-			if(alphabet.containsKey(l)) {
+
+			if (alphabet.containsKey(l)) {
 				score += alphabet.get(l);
 			}
 		}
-		
+
 		return score;
 	}
 
@@ -215,24 +218,25 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		
+
 		String newNum = "";
-		
-		for(int i=0; i<string.length(); i++) {
-			if(Character.isDigit(string.charAt(i))){
+
+		for (int i = 0; i < string.length(); i++) {
+			if (Character.isDigit(string.charAt(i))) {
 				newNum += string.charAt(i);
-				
-			};
-			
-			if(newNum.length() > 11) {
+
+			}
+			;
+
+			if (newNum.length() > 11) {
 				throw new IllegalArgumentException("Invalid Number");
 			}
-			
-			if(Character.isAlphabetic(string.charAt(i))) {
+
+			if (Character.isAlphabetic(string.charAt(i))) {
 				throw new IllegalArgumentException("Invalid Number");
 			}
 		}
-		
+
 		return newNum;
 	}
 
@@ -246,17 +250,16 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		String[] arrayString = string.split("[-, ?.@]+");
-		//change so spaces and commas are removed
+		String[] arrayString = string.split("\\s*(=>|,|\\s)\\s*");
+		// received help from Adriana
 		HashMap<String, Integer> counter = new HashMap<>();
-		System.out.println(Arrays.toString(arrayString));
-		
-		for(String w:arrayString) {
-			int frequency = counter.getOrDefault(w,0);
-			
+
+		for (String w : arrayString) {
+			int frequency = counter.getOrDefault(w, 0);
+
 			counter.put(w, ++frequency);
 		}
-		
+
 		return counter;
 	}
 
@@ -336,6 +339,14 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
+
+		char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+		for (int v = 0; v < vowels.length; v++) {
+			if (string.charAt(0) == vowels[v]) {
+				//a bit stuck here
+			}
+		}
+
 		// TODO Write an implementation for this method declaration
 		return null;
 	}
@@ -356,8 +367,22 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
+//		// TODO Write an implementation for this method declaration
+		String num = String.valueOf(input);
+		char[] sepNum = num.toCharArray();
+		int sum = 0;
+		int[] newNum = new int[sepNum.length];
 		
-		// TODO Write an implementation for this method declaration
+		for(int i=0; i<sepNum.length; i++) {
+			sum += Math.pow(newNum[i], sepNum.length);
+		}
+		
+		System.out.println(sepNum);
+		
+		if(input == sum) {
+			return true;
+		}
+		
 		return false;
 	}
 
@@ -372,8 +397,18 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
+		List<Long> factorsOfPrime = new ArrayList<Long>();
+		long num = l;
+		for (int i = 2; i <= num; i++) {
+			if (num % i == 0) {
+				factorsOfPrime.add((long) i);
+				num /= i;
+				i--;
+			}
+		}
+
+		return factorsOfPrime;
 		// TODO Write an implementation for this method declaration
-		return null;
 	}
 
 	/**
@@ -431,7 +466,24 @@ public class EvaluationService {
 	 */
 	public int calculateNthPrime(int i) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		int n = 1;
+		int k;
+		int count = 0;
+		if (i <= 0) {
+			throw new IllegalArgumentException();
+		}
+		while (count < i) {
+			n++;
+			for (k = 2; k <= n; k++) {
+				if (n % k == 0) {
+					break;
+				}
+			}
+			if (k == n) {
+				count++;
+			}
+		}
+		return n;
 	}
 
 	/**
@@ -525,7 +577,16 @@ public class EvaluationService {
 	 */
 	public boolean isPangram(String string) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		HashSet<Character> alphabet = new HashSet<Character>();
+		char[] myCharArray = string.toLowerCase().toCharArray();
+		char x;
+		for (int i = 0; i < string.length(); i++) {
+			x = myCharArray[i];
+			if (Character.isLetter(x)) {
+				alphabet.add(x);
+			}
+		}
+		return alphabet.size() == 26;
 	}
 
 	/**
@@ -538,7 +599,11 @@ public class EvaluationService {
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		//I received ALOT of help on this from my peers
+		if (given.isSupported(ChronoUnit.HOURS)) {
+			return given.plus(Duration.ofSeconds(1000000000));
+		} else
+			return LocalDate.from(given).atStartOfDay().plusSeconds(1000000000);
 	}
 
 	/**
@@ -556,7 +621,20 @@ public class EvaluationService {
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		Set<Integer> myhSet = new HashSet<Integer>();
+		int sum = 0;
+
+		for (int j = 0; j < set.length; j++) {
+			int count = 1;
+			while (set[j] * count < i) {
+				myhSet.add(set[j] * count);
+				count++;
+			}
+		}
+		for (Integer s : myhSet) {
+			sum += s;
+		}
+		return sum;
 	}
 
 	/**
